@@ -34,7 +34,6 @@ with open(pybank_csv) as csv_file:
     
     # Read through each row of data after the header
     for row in csv_reader:
-        print(row)
 
         # Track the total months
         total_months += 1
@@ -58,20 +57,38 @@ with open(pybank_csv) as csv_file:
         if net_change > greatest_increase[1]:
             greatest_increase[0] = row[0]
             greatest_increase[1] = net_change
-           
-            
             
         # Find the greatest decrease in profits, including what month
         if net_change < greatest_decrease[1]:
             greatest_decrease[0] = row[0]
             greatest_decrease[1] = net_change
             
-
     # Slice out the first index 0 in the change_list 
     change_list = change_list[1 : ]
-    
+
     # Calculate the average change of the profits/losses
-    average_change = sum(change_list)/len(change_list)
+    (average_change) = sum(change_list)/len(change_list)
+
+output_file = os.path.join("Analysis", "budget_analysis.txt")
+with open(output_file, "w") as txt_file:
+   
+    # Organize the text file
+    txt_file.write("Financial Analysis\n")
+    txt_file.write("\n")
+    txt_file.write("------------------------------------\n")
+    txt_file.write("\n")
+    txt_file.write(f"Total Months: : {total_months}\n")
+    txt_file.write("\n")
+    txt_file.write(f"Total: : ($){total_net}\n")
+    txt_file.write("\n")
+    txt_file.write(f"Average Change: : {average_change:.2f}\n")
+    txt_file.write("\n")
+    txt_file.write(f"Greatest Increase in Profits: : {greatest_increase}\n")
+    txt_file.write("\n")
+    txt_file.write(f"Greatest Decrease in Profits: : {greatest_decrease}\n")
+
+
+
 
 
     
@@ -101,16 +118,7 @@ with open(pybank_csv) as csv_file:
 
 
 
- # Organize the text file
-    print("Financial Analysis")
-    print("------------------------------------")
-    print(f"Total Months : {total_months}")
-    print(f"Total: : ($){total_net}")
 
 
 
 
-
-output_file = os.path.join("Analysis", "budget_analysis.txt")
-with open(output_file, "w") as txt_file:
-    txt_file.write(str(total_months))

@@ -6,7 +6,7 @@ Total Months: : 86
 
 Total: : ($)22564198
 
-Average Change: : -8311.11
+Average Change: : -8311.105882352942
 
 Greatest Increase in Profits: : ['16-Aug', 1862002]
 
