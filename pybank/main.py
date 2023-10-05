@@ -17,6 +17,11 @@ total_net = 0
 with open(pybank_csv) as csv_file:
     csv_reader = csv.reader(csv_file, delimiter=",")
     
+    # Organize the test file
+    print("Financial Analysis")
+    print("------------------------------------")
+    print(f"Total Months : {total_months}")
+    
     # Read the header row
     csv_header = next(csv_reader)
     
