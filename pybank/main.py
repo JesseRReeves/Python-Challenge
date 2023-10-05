@@ -65,10 +65,18 @@ with open(pybank_csv) as csv_file:
             
     # Slice out the first index 0 in the change_list 
     change_list = change_list[1 : ]
-
+    
     # Calculate the average change of the profits/losses
     (average_change) = sum(change_list)/len(change_list)
+    
+    # Print on the terminal the results
+    print(total_months)
+    print(total_net)
+    print("%.2f" % average_change)
+    print(greatest_increase)
+    print(greatest_decrease)
 
+#Set up where to write text within a specific text file
 output_file = os.path.join("Analysis", "budget_analysis.txt")
 with open(output_file, "w") as txt_file:
    
@@ -86,6 +94,7 @@ with open(output_file, "w") as txt_file:
     txt_file.write(f"Greatest Increase in Profits: : {greatest_increase}\n")
     txt_file.write("\n")
     txt_file.write(f"Greatest Decrease in Profits: : {greatest_decrease}\n")
+
 
 
 
