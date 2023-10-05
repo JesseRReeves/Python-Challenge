@@ -12,35 +12,32 @@ total_months = 0
 
 # Define net Total profits/losses
 total_net = 0
+prev_net = 0
+change_list = []
 
 # Open and read csv
 with open(pybank_csv) as csv_file:
     csv_reader = csv.reader(csv_file, delimiter=",")
     
-    # Organize the test file
-    print("Financial Analysis")
-    print("------------------------------------")
-    print(f"Total Months : {total_months}")
-    
     # Read the header row
     csv_header = next(csv_reader)
     
-
-    first_row = next(csv_reader)
-   
-    # Track the total months
-    total_months += 1
-    
-
-   
     # Read through each row of data after the header
     for row in csv_reader:
 
         # Track the total months
         total_months += 1
         total_net += int(row[1])
-    print(total_net)
+        current_profit_loss = int(row[1])
+        new_change = current_profit_loss - prev_net
+        change_list += [new_change]
+        prev_net = int(row[1])
+    change_list = change_list[1 : ]
+    average_change = sum(change_list)/len(change_list)
+    print(average_change)
 
+
+    # Use prev_net to find the changes in "Profit/Losses"
     
         
      
@@ -64,7 +61,11 @@ with open(pybank_csv) as csv_file:
 
 
 
-
+ # Organize the test file
+    print("Financial Analysis")
+    print("------------------------------------")
+    print(f"Total Months : {total_months}")
+    print(f"Total: : ($){total_net}")
 
 
 
