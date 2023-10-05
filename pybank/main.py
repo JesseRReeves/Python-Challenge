@@ -12,7 +12,9 @@ total_months = 0
 
 # Define net Total profits/losses
 total_net = 0
+# Define previous net
 prev_net = 0
+# Define the change within the list
 change_list = []
 
 # Open and read csv
@@ -27,17 +29,30 @@ with open(pybank_csv) as csv_file:
 
         # Track the total months
         total_months += 1
+       
+        # Find the total net profit
         total_net += int(row[1])
+       
+        # Set variables to find the change in profits/losses
         current_profit_loss = int(row[1])
+       
+        # Calculate the new change 
         new_change = current_profit_loss - prev_net
+       
+        # Add the new change to our list within the loop
         change_list += [new_change]
+
+        # Set prev_net to go down the column
         prev_net = int(row[1])
+
+    # Slice out the first index 0 in the change_list 
     change_list = change_list[1 : ]
+    # Calculate the average change of the profits/losses
     average_change = sum(change_list)/len(change_list)
-    print(average_change)
+    
 
 
-    # Use prev_net to find the changes in "Profit/Losses"
+    
     
         
      
