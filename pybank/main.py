@@ -76,7 +76,7 @@ with open(pybank_csv) as csv_file:
 
 
 
- # Organize the test file
+ # Organize the text file
     print("Financial Analysis")
     print("------------------------------------")
     print(f"Total Months : {total_months}")
