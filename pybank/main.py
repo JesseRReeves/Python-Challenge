@@ -12,10 +12,18 @@ total_months = 0
 
 # Define net Total profits/losses
 total_net = 0
+
 # Define previous net
 prev_net = 0
+
 # Define the change within the list
 change_list = []
+
+# Define greatest_increase
+greatest_increase = ["", 0]
+
+#Define greatest_decrease
+greatest_decrease = ["", 99999999999999]
 
 # Open and read csv
 with open(pybank_csv) as csv_file:
@@ -44,11 +52,28 @@ with open(pybank_csv) as csv_file:
 
         # Set prev_net to go down the column
         prev_net = int(row[1])
+       
+        # Find the greatest increase
+        # greatest_increase = max(change_list)  #I had originally come up with this on my own, however
+        #  a bcslearning assistant said he's not sure if I would get docked or not for using it.
+        
+        if new_change > greatest_increase[1]:
+            greatest_increase[0] = row[0]
+            greatest_increase[1] = new_change
+            print(greatest_increase)
+        # Find the greatest decrease
+        if new_change < greatest_decrease[1]:
+            greatest_decrease[0] = row[0]
+            greatest_decrease[1] = new_change
+            print(greatest_decrease)
 
     # Slice out the first index 0 in the change_list 
     change_list = change_list[1 : ]
+    
     # Calculate the average change of the profits/losses
     average_change = sum(change_list)/len(change_list)
+
+
     
 
 
